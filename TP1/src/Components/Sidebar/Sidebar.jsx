@@ -2,7 +2,7 @@ import pokeball from '../../assets/pokeball.png';
 import { useState } from 'react';
 import './Sidebar.scss';
 
-function Sidebar() {
+function Sidebar({ pokedex }) {
     const [isOpen, setIsOpen] = useState(false);
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
@@ -14,15 +14,25 @@ function Sidebar() {
       </button>
       <h2>
         <img src={pokeball} alt="pokeball" />
-        <p>Pokédex</p>
+        <p>Pokédex ({pokedex.length})</p>
       </h2>
-      <div>Votre Pokédex est vide</div>
+      {pokedex.length === 0 ? (
+        <div>Votre Pokédex est vide</div>
+      ) : (
+        <ul>
+          {pokedex.map((pokemon) => (
+            <li key={pokemon.id}>
+              {pokemon.name}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   ) : (
     <div className="lmj-cart-closed">
       <button className="lmj-cart-toggle-button" onClick={toggleSidebar}>
         <img src={pokeball} alt="pokeball" />
-        <p>Pokédex</p>
+        <p>Pokédex ({pokedex.length})</p>
       </button>
     </div>
   )
