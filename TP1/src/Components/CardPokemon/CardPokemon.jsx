@@ -1,10 +1,17 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './CardPokemon.scss';
 import iconAdd from '../../assets/iconAdd.svg';
 
 export function CardPokemon(props) {
   let poke = props.pokemondata;
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleVoirPlus = (e) => {
+    e.stopPropagation();
+    navigate(`/details-pokemon/${poke.id}`);
+  };
 
   return (
     <article
@@ -46,7 +53,21 @@ export function CardPokemon(props) {
           </figcaption>
         </figure>
         <div className="cardBack">
-          
+          <button 
+            onClick={handleVoirPlus}
+            style={{
+              padding: '10px 20px',
+              backgroundColor: 'white',
+              color: getColorHexa(poke.apiTypes[0].name),
+              border: 'none',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+              fontSize: '1rem'
+            }}
+          >
+            Voir plus
+          </button>
         </div>
       </div>
     </article>
