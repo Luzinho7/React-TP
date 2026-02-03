@@ -4,6 +4,7 @@ import logo from './assets/PokemonLogo.png';
 import CardPokemon from './Components/CardPokemon/CardPokemon.jsx';
 import Sidebar from './Components/Sidebar/Sidebar.jsx';
 import { useState, useEffect } from 'react';
+import Spinner from "./Components/Spinner/spinner.jsx";
 
 function App() {
   const [pokedex, setPokedex] = useState([]);
@@ -43,7 +44,10 @@ function App() {
         <main>{helloList}</main>
       </div>
         ) : (
-          <p style={{textAlign: "center", width: "100%", color: "white"}}>Chargement des données...</p>
+          <>
+            <Spinner />
+            <p style={{textAlign: "center", width: "100%", color: "white"}}>Chargement des données...</p>
+          </>
         )
       }
     </>
